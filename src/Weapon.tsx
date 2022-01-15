@@ -12,25 +12,27 @@ const Weapon: React.FC<WeaponProps> = ({ item }) => {
   const src = screenshot(item.itemHash)
 
   return (
-    <div
-      className="weaponTile"
-      style={{
-        backgroundImage: `url("${src}")`,
-      }}
-    >
-      <div className="weaponName">{item.name}</div>
-      <div className="location">
-        damagetype: {item.damageType}
-        <br />
-        type: {item.weaponType}
-        <br />
-        ammo: {item.ammoType}
-        <br />
-        slot:{item.equipmentSlot}
-        <br />
-        <img alt="icon" src={`https://www.bungie.net${item.icon}`} />
+    <a href={`https://d2gunsmith.com/w/${item.itemHash}`}>
+      <div
+        className="weaponTile"
+        style={{
+          backgroundImage: `url("${src}")`,
+        }}
+      >
+        <div className="weaponName">{item.name}</div>
+        <div className="details">
+          damagetype: {item.damageType}
+          <br />
+          type: {item.weaponType}
+          <br />
+          ammo: {item.ammoType}
+          <br />
+          slot:{item.equipmentSlot}
+          <br />
+          <img alt="icon" src={`https://www.bungie.net${item.icon}`} />
+        </div>
       </div>
-    </div>
+    </a>
   )
 }
 

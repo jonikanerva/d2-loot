@@ -17,3 +17,12 @@
   margin: 5px;
   border-radius: 4px;
 }
+
+.details {
+  color: white;
+  font-size: 18px;
+}
+
+a {
+  text-decoration: none;
+}
