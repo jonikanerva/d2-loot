@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
-import { fetchData, Loot } from './bungieData'
+import { fetchData, Item } from './bungieData'
+import Weapon from './Weapon'
 
 const LootTable: React.FC = () => {
-  const [loot, setLoot] = useState<Loot[]>()
+  const [loot, setLoot] = useState<Item[]>()
 
   useEffect(() => {
     fetchData().then((loot) => setLoot(loot))
@@ -12,29 +13,18 @@ const LootTable: React.FC = () => {
     return <h1>Loading...</h1>
   }
 
-  let prev = ''
-  const data = loot
-    .sort((a, b) => (a.source > b.source ? 1 : -1))
-    .map(({ name, source }) => {
-      const data =
-        prev !== source
-          ? {
-              name,
-              source,
-            }
-          : { name, source: undefined }
-      prev = source
-
-      return data
-    })
+  const data = loot.filter(
+    (loot) =>
+      loot.source ===
+      'Source: Complete strikes and earn rank-up packages from Commander Zavala.'
+  )
 
   return (
     <div>
-      {data.map(({ name, source }) => (
-        <div>
-          {source ? <h3>{source}</h3> : ''}
-          <li>{name}</li>
-        </div>
+      <h3>{data[0].source}</h3>
+
+      {data.map((item, key) => (
+        <Weapon item={item} key={key} />
       ))}
     </div>
   )

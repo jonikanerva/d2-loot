@@ -1,0 +1,19 @@
+.weaponName {
+  color: white;
+  font-size: 20px;
+  padding-bottom: 3px;
+}
+
+/* top | right | bottom | left */
+.weaponTile {
+  max-width: 400px;
+  overflow: hidden;
+  flex: 1 1 400px;
+  padding: 5px 15px 5px 15px;
+  background-position-x: right;
+  background-position-y: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 5px;
+  border-radius: 4px;
+}
