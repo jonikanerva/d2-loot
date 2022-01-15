@@ -8,10 +8,35 @@ const LootTable: React.FC = () => {
     fetchData().then((loot) => setLoot(loot))
   }, [])
 
-  return loot === undefined ? (
-    <div>Loading</div>
-  ) : (
-    <div>{JSON.stringify(loot)}</div>
+  if (loot === undefined) {
+    return <h1>Loading...</h1>
+  }
+
+  let prev = ''
+  const data = loot
+    .sort((a, b) => (a.source > b.source ? 1 : -1))
+    .map(({ name, source }) => {
+      const data =
+        prev !== source
+          ? {
+              name,
+              source,
+            }
+          : { name, source: undefined }
+      prev = source
+
+      return data
+    })
+
+  return (
+    <div>
+      {data.map(({ name, source }) => (
+        <div>
+          {source ? <h3>{source}</h3> : ''}
+          <li>{name}</li>
+        </div>
+      ))}
+    </div>
   )
 }
 
