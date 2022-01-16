@@ -24,6 +24,7 @@ const SourceDropdown: React.FC<SourceDropdownProps> = ({
   return (
     <div className="sourceDropdown">
       <select name="sources" id="sources" value={selected} onChange={onChange}>
+        <option value={''}>Choose a source</option>
         {values.map((value, key) => (
           <option key={key} value={value}>
             {value}

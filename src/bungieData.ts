@@ -143,7 +143,7 @@ const getDefinitions = (paths: Record<string, string>): Promise<Item[]> => {
 
           return {
             name,
-            source: item.sourceString,
+            source: item.sourceString.replace(/^Source: /, ''),
             itemHash,
             damageType,
             weaponType,

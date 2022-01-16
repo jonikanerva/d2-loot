@@ -7,7 +7,7 @@ import './LootTable.css'
 const LootTable: React.FC = () => {
   const [loot, setLoot] = useState<Item[]>()
   const [source, setSource] = useState<string>(
-    'Source: Complete strikes and earn rank-up packages from Commander Zavala.'
+    'Complete strikes and earn rank-up packages from Commander Zavala.'
   )
 
   useEffect(() => {
@@ -30,7 +30,7 @@ const LootTable: React.FC = () => {
         defaultValue={source}
         onChangeFunction={(event) => setSource(event.target.value)}
       />
-      <h3>{data[0].source}</h3>
+      <h3>{data[0]?.source}</h3>
       <div className="lootTable">
         {data.map((item, key) => (
           <Weapon item={item} key={key} />
