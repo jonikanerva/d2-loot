@@ -72,7 +72,7 @@ const getManifest = (): Promise<Record<string, string>> =>
 
         return manifest.Response
       } else {
-        throw new Error('Error fetchting manifest')
+        throw new Error('Error fetching manifest')
       }
     })
     .then((manifest) => manifest.jsonWorldComponentContentPaths.en)
