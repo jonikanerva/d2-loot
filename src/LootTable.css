@@ -1,0 +1,4 @@
+.lootTable {
+  display: flex;
+  flex-wrap: wrap;
+}

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './SourceDropdown.css'
 
 export type Event = React.ChangeEvent<HTMLSelectElement>
 
@@ -21,8 +22,7 @@ const SourceDropdown: React.FC<SourceDropdownProps> = ({
   }
 
   return (
-    <div>
-      <label htmlFor="sources">Choose a source:</label>
+    <div className="sourceDropdown">
       <select name="sources" id="sources" value={selected} onChange={onChange}>
         {values.map((value, key) => (
           <option key={key} value={value}>

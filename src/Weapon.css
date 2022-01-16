@@ -1,28 +1,38 @@
-.weaponName {
-  color: white;
-  font-size: 20px;
-  padding-bottom: 3px;
-}
-
 /* top | right | bottom | left */
 .weaponTile {
-  max-width: 400px;
-  overflow: hidden;
-  flex: 1 1 400px;
-  padding: 5px 15px 5px 15px;
-  background-position-x: right;
-  background-position-y: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  display: flex;
+  width: 350px;
+  padding: 5px 5px 5px 8px;
   margin: 5px;
+  border-radius: 4px;
+  background-color: rgba(0, 0, 0, 0.16);
+  color: rgb(21, 19, 19);
+}
+
+.weaponDetails {
+  font-size: 14px;
+  padding-left: 14px;
+  overflow: hidden;
+}
+
+.weaponIcon img {
+  margin-top: 3px;
   border-radius: 4px;
 }
 
-.details {
-  color: white;
-  font-size: 18px;
+.weaponName {
+  font-size: 19px;
+  font-weight: bold;
+  padding-bottom: 2px;
+  white-space: nowrap;
 }
 
-a {
+.weaponName a {
   text-decoration: none;
+  color: inherit;
+}
+
+.weaponType {
+  font-size: 16px;
+  padding-bottom: 4px;
 }

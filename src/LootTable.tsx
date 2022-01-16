@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { fetchData, Item } from './bungieData'
 import SourceDropdown from './SourceDropdown'
 import Weapon from './Weapon'
+import './LootTable.css'
 
 const LootTable: React.FC = () => {
   const [loot, setLoot] = useState<Item[]>()
@@ -30,9 +31,11 @@ const LootTable: React.FC = () => {
         onChangeFunction={(event) => setSource(event.target.value)}
       />
       <h3>{data[0].source}</h3>
-      {data.map((item, key) => (
-        <Weapon item={item} key={key} />
-      ))}
+      <div className="lootTable">
+        {data.map((item, key) => (
+          <Weapon item={item} key={key} />
+        ))}
+      </div>
     </div>
   )
 }
