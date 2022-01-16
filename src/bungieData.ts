@@ -103,7 +103,11 @@ const getDefinitions = (paths: Record<string, string>): Promise<Item[]> => {
       items: DestinyInventoryItemDefinition
     ]) => {
       Object.values(items)
-        .filter((item) => item.itemType === 3)
+        .filter(
+          (item) =>
+            item.itemType === 3 &&
+            (item.inventory.tierType === 5 || item.inventory.tierType === 6)
+        )
         .forEach((item) => {
           const weapon = {
             name: item.displayProperties.name,
