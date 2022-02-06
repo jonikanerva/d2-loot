@@ -15,8 +15,13 @@ const searchByName = (search: string, loot?: Item[]) => {
     loot?.filter((item) => {
       const name = item.name.toLowerCase()
       const source = item.source.toLowerCase()
+      const type = item.weaponType.toLowerCase()
 
-      return name.includes(searchTerm) || source.includes(searchTerm)
+      return (
+        name.includes(searchTerm) ||
+        source.includes(searchTerm) ||
+        type.includes(searchTerm)
+      )
     }) || []
   )
 }
