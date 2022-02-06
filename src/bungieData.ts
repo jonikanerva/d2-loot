@@ -152,7 +152,13 @@ const getDefinitions = (paths: Record<string, string>): Promise<Item[]> => {
             icon,
           }
         })
-        .sort((a, b) => (a.name > b.name ? 1 : -1))
+        .sort((a, b) => {
+          if (a.source === b.source) {
+            return a.name > b.name ? 1 : -1
+          }
+
+          return a.source > b.source ? 1 : -1
+        })
     }
   )
 }
