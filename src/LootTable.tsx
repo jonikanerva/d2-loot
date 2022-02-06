@@ -3,22 +3,47 @@ import React, { Fragment, useEffect, useState } from 'react'
 import { fetchData, Item } from './bungieData'
 import Header from './Header'
 import Weapon from './Weapon'
+import SearchBar from './SearchBar'
 
+const searchByName = (search: string, loot?: Item[]) => {
+  if (search.length === 0) {
+    return loot
+  }
+
+  return (
+    loot?.filter((item) => {
+      const name = item.name.toLowerCase()
+
+      return name.includes(search.toLowerCase())
+    }) || []
+  )
+}
 const LootTable: React.FC = () => {
   let previousTitle = ''
   const [loot, setLoot] = useState<Item[]>()
+  const [data, setData] = useState<Item[]>()
 
   useEffect(() => {
-    fetchData().then((loot) => setLoot(loot))
+    fetchData().then((loot) => {
+      setLoot(loot)
+      setData(loot)
+    })
   }, [])
 
-  if (loot === undefined) {
+  const handleSearchOnChange = (search: string) => {
+    const result = searchByName(search, loot)
+
+    setData(result)
+  }
+
+  if (loot === undefined || data === undefined) {
     return <h1>Loading...</h1>
   }
 
   return (
     <div className="lootTable">
-      {loot.map((item, key) => {
+      <SearchBar searchChange={handleSearchOnChange} />
+      {data.map((item, key) => {
         const titleChanged = previousTitle !== item.source
         previousTitle = item.source
 
@@ -29,6 +54,7 @@ const LootTable: React.FC = () => {
           </Fragment>
         )
       })}
+      {data.length === 0 && <Header title="Nothing found..." />}
     </div>
   )
 }
