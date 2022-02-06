@@ -9,12 +9,14 @@ const searchByName = (search: string, loot?: Item[]) => {
   if (search.length === 0) {
     return loot
   }
+  const searchTerm = search.toLowerCase()
 
   return (
     loot?.filter((item) => {
       const name = item.name.toLowerCase()
+      const source = item.source.toLowerCase()
 
-      return name.includes(search.toLowerCase())
+      return name.includes(searchTerm) || source.includes(searchTerm)
     }) || []
   )
 }
