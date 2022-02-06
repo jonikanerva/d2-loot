@@ -1,4 +1,7 @@
 * {
   font-family: system-ui, -apple-system, sans-serif;
   box-sizing: border-box;
+
+  background-color: black;
+  color: rgb(232, 223, 223);
 }

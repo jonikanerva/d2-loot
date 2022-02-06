@@ -5,18 +5,30 @@
   padding: 5px 5px 5px 8px;
   margin: 5px;
   border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.16);
-  color: rgb(21, 19, 19);
+  background-color: rgb(29, 29, 29);
 }
 
 .weaponDetails {
   font-size: 14px;
   padding-left: 14px;
   overflow: hidden;
+  background-color: inherit;
+}
+
+.weaponIcon {
+  height: 100px;
+  width: 100px;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: rgb(29, 29, 29);
 }
 
 .weaponIcon img {
-  margin-top: 3px;
   border-radius: 4px;
 }
 
@@ -25,6 +37,7 @@
   font-weight: bold;
   padding-bottom: 2px;
   white-space: nowrap;
+  background-color: inherit;
 }
 
 .weaponName a {
@@ -35,4 +48,5 @@
 .weaponType {
   font-size: 16px;
   padding-bottom: 4px;
+  background-color: inherit;
 }
