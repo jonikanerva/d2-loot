@@ -1,9 +1,10 @@
 import './LootTable.css'
 import React, { Fragment, useEffect, useState } from 'react'
+import VisibilityObserver from 'react-visibility-observer'
 import { fetchData, Item } from './bungieData'
 import Header from './Header'
-import Weapon from './Weapon'
 import SearchBar from './SearchBar'
+import Weapon from './Weapon'
 
 const searchByName = (search: string, loot?: Item[]) => {
   if (search.length === 0) {
@@ -57,7 +58,9 @@ const LootTable: React.FC = () => {
         return (
           <Fragment key={key}>
             {titleChanged && <Header title={item.source} />}
-            <Weapon item={item} />
+            <VisibilityObserver triggerOnce={true}>
+              <Weapon item={item} />
+            </VisibilityObserver>
           </Fragment>
         )
       })}

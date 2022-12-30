@@ -7105,6 +7105,11 @@ react-scripts@5.0.0:
   optionalDependencies:
     fsevents "^2.3.2"
 
+react-visibility-observer@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-visibility-observer/-/react-visibility-observer-1.0.4.tgz#6fe7fa9cbeaef3dd7bb7980d89bb9727542e55c2"
+  integrity sha512-6LYIqIFDhJihXwKLLmT3HqogwD4E6mqI/p/MIl6GUyH+qGplMCKdbkQhA9NK40L2H4vwoHYacpHbFhInuzGZPg==
+
 react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
