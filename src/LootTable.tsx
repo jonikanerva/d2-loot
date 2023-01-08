@@ -58,7 +58,7 @@ const LootTable: React.FC = () => {
         return (
           <Fragment key={key}>
             {titleChanged && <Header title={item.source} />}
-            <VisibilityObserver triggerOnce={true}>
+            <VisibilityObserver>
               <Weapon item={item} />
             </VisibilityObserver>
           </Fragment>
