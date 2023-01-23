@@ -30,9 +30,16 @@ const LootTable: React.FC = () => {
   let previousTitle = ''
   const [loot, setLoot] = useState<Item[]>()
   const [data, setData] = useState<Item[]>()
+  const [loadingStatus, setLoadingStatus] = useState<string[]>()
 
   useEffect(() => {
-    fetchData().then((loot) => {
+    let loading: string[] = []
+    const setLoading = (text: string) => {
+      loading.push(text)
+      setLoadingStatus(loading)
+    }
+
+    fetchData(setLoading).then((loot) => {
       setLoot(loot)
       setData(loot)
     })
@@ -45,7 +52,12 @@ const LootTable: React.FC = () => {
   }
 
   if (loot === undefined || data === undefined) {
-    return <h1>Loading...</h1>
+    return (
+      <div>
+        <h1>Loading..</h1>
+        <pre>{loadingStatus?.join('\n')}</pre>
+      </div>
+    )
   }
 
   return (
