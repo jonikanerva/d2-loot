@@ -43,6 +43,8 @@ const damageTypeName = (type: number): string => {
       return 'Kinetic'
     case 3454344768:
       return 'Void'
+    case 3949783978:
+      return 'Strand'
     default:
       return 'Unkown'
   }
