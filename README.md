@@ -4,7 +4,7 @@ Print the current loot tables available from the public Bungie API.
 
 ## Development
 
-This is TypeScript a [Create React App](https://github.com/facebook/create-react-app).
+This is a TypeScript [Create React App](https://github.com/facebook/create-react-app).
 
 Run `yarn start` to start the app in the development mode.
 
