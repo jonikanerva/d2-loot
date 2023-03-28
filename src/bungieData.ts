@@ -70,7 +70,7 @@ const fetchUrl = (
 const getManifest = (setStatus: Function): Promise<Record<string, string>> =>
   fetchUrl('https://www.bungie.net/Platform/Destiny2/Manifest/', setStatus, {
     headers: {
-      'X-API-Key': process.env.REACT_APP_BUNGIE_API_KEY || '',
+      'X-API-Key': '',
     },
   })
     .then((manifest: ServerResponse<DestinyManifest>) => {
