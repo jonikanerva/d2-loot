@@ -50,13 +50,8 @@ const damageTypeName = (type: number): string => {
   }
 }
 
-const fetchUrl = (
-  url: string,
-  setStatus: Function,
-  init?: RequestInit
-): Promise<any> => {
+const fetchUrl = (url: string, init?: RequestInit): Promise<any> => {
   console.log('Downloading: ', url)
-  setStatus(`Downloading: ${url}`)
 
   return fetch(url, init).then((res) => {
     if (res.ok === true) {
@@ -67,8 +62,8 @@ const fetchUrl = (
   })
 }
 
-const getManifest = (setStatus: Function): Promise<Record<string, string>> =>
-  fetchUrl('https://www.bungie.net/Platform/Destiny2/Manifest/', setStatus, {
+const getManifest = (): Promise<Record<string, string>> =>
+  fetchUrl('https://www.bungie.net/Platform/Destiny2/Manifest/', {
     headers: {
       'X-API-Key': '',
     },
@@ -76,7 +71,6 @@ const getManifest = (setStatus: Function): Promise<Record<string, string>> =>
     .then((manifest: ServerResponse<DestinyManifest>) => {
       if (manifest?.Response !== undefined) {
         console.log('Manifest version: ', manifest.Response.version)
-        setStatus(`Manifest version: ${manifest.Response.version}`)
         return manifest.Response
       } else {
         throw new Error('Error fetching manifest')
@@ -84,8 +78,8 @@ const getManifest = (setStatus: Function): Promise<Record<string, string>> =>
     })
     .then((manifest) => manifest.jsonWorldComponentContentPaths.en)
 
-const getContent = (path: string, setStatus: Function): Promise<any> =>
-  fetchUrl(`https://www.bungie.net${path}`, setStatus)
+const getContent = (path: string): Promise<any> =>
+  fetchUrl(`https://www.bungie.net${path}`)
 
 export interface Item {
   name: string
@@ -98,15 +92,12 @@ export interface Item {
   icon: string
 }
 
-const getDefinitions = (
-  paths: Record<string, string>,
-  setStatus: Function
-): Promise<Item[]> => {
+const getDefinitions = (paths: Record<string, string>): Promise<Item[]> => {
   const weapons = new Map<number, Item>()
 
   return Promise.all([
-    getContent(paths.DestinyCollectibleDefinition, setStatus),
-    getContent(paths.DestinyInventoryItemDefinition, setStatus),
+    getContent(paths.DestinyCollectibleDefinition),
+    getContent(paths.DestinyInventoryItemDefinition),
   ]).then(
     ([collectibles, items]: [
       collectibles: DestinyCollectibleDefinition,
@@ -173,5 +164,5 @@ const getDefinitions = (
   )
 }
 
-export const fetchData = (setStatus: Function): Promise<Item[]> =>
-  getManifest(setStatus).then((paths) => getDefinitions(paths, setStatus))
+export const fetchData = (): Promise<Item[]> =>
+  getManifest().then((paths) => getDefinitions(paths))

@@ -3,6 +3,7 @@ import React, { Fragment, useEffect, useState } from 'react'
 import VisibilityObserver from 'react-visibility-observer'
 import { fetchData, Item } from './bungieData'
 import Header from './Header'
+import Loading from './Loading'
 import SearchBar from './SearchBar'
 import Weapon from './Weapon'
 
@@ -30,16 +31,9 @@ const LootTable: React.FC = () => {
   let previousTitle = ''
   const [loot, setLoot] = useState<Item[]>()
   const [data, setData] = useState<Item[]>()
-  const [loadingStatus, setLoadingStatus] = useState<string[]>()
 
   useEffect(() => {
-    let loading: string[] = []
-    const setLoading = (text: string) => {
-      loading.push(text)
-      setLoadingStatus(loading)
-    }
-
-    fetchData(setLoading).then((loot) => {
+    fetchData().then((loot) => {
       setLoot(loot)
       setData(loot)
     })
@@ -52,12 +46,7 @@ const LootTable: React.FC = () => {
   }
 
   if (loot === undefined || data === undefined) {
-    return (
-      <div>
-        <h1>Loading..</h1>
-        <pre>{loadingStatus?.join('\n')}</pre>
-      </div>
-    )
+    return <Loading />
   }
 
   return (
