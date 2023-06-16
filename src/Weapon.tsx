@@ -8,11 +8,11 @@ interface WeaponProps {
 
 const Weapon: React.FC<WeaponProps> = ({ item }) => {
   const { isVisible } = useVisibilityObserver()
-  const gunsmith = `https://d2gunsmith.com/w/${item.itemHash}`
+  const foundry = `https://d2foundry.gg/w/${item.itemHash}`
 
   return (
     <div className="weaponTile">
-      <a href={gunsmith}>
+      <a href={foundry}>
         <div className="weaponIcon">
           <img
             alt="icon"
