@@ -5,6 +5,22 @@ import {
   DestinyCollectibleDefinition,
 } from 'bungie-api-ts/destiny2'
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const groupBy = <T, K extends keyof any>(
+  array: T[],
+  getKey: (item: T) => K
+): Record<K, T[]> =>
+  array.reduce<Record<K, T[]>>((accumulator, currentItem) => {
+    const key = getKey(currentItem)
+
+    if (!accumulator[key]) {
+      accumulator[key] = []
+    }
+
+    accumulator[key].push(currentItem)
+    return accumulator
+  }, {} as Record<K, T[]>)
+
 const equipmentSlotName = (slot: number): string => {
   switch (slot) {
     case 2465295065:

@@ -1,7 +1,7 @@
 import './LootTable.css'
 import React, { Fragment, useEffect, useState } from 'react'
 import VisibilityObserver from 'react-visibility-observer'
-import { fetchData, Item } from './bungieData'
+import { fetchData, groupBy, Item } from './bungieData'
 import Header from './Header'
 import Loading from './Loading'
 import SearchBar from './SearchBar'
@@ -28,7 +28,6 @@ const searchByName = (search: string, loot?: Item[]) => {
   )
 }
 const LootTable: React.FC = () => {
-  let previousTitle = ''
   const [loot, setLoot] = useState<Item[]>()
   const [data, setData] = useState<Item[]>()
 
@@ -49,23 +48,28 @@ const LootTable: React.FC = () => {
     return <Loading />
   }
 
+  if (data.length === 0) {
+    return <Header title="Nothing found..." />
+  }
+
+  const lootGrouped = groupBy(data, (item) =>
+    item.source === undefined || item.source === '' ? 'Unknown' : item.source
+  )
+
   return (
     <div className="lootTable">
       <SearchBar searchChange={handleSearchOnChange} />
-      {data.map((item, key) => {
-        const titleChanged = previousTitle !== item.source
-        previousTitle = item.source
 
-        return (
-          <Fragment key={key}>
-            {titleChanged && <Header title={item.source} />}
-            <VisibilityObserver>
+      {Object.entries(lootGrouped).map(([title, loot], key) => (
+        <Fragment key={key}>
+          <Header title={title} />
+          {loot.map((item, key) => (
+            <VisibilityObserver key={key}>
               <Weapon item={item} />
             </VisibilityObserver>
-          </Fragment>
-        )
-      })}
-      {data.length === 0 && <Header title="Nothing found..." />}
+          ))}
+        </Fragment>
+      ))}
     </div>
   )
 }
