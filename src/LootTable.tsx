@@ -32,10 +32,12 @@ const LootTable: React.FC = () => {
   const [data, setData] = useState<Item[]>()
 
   useEffect(() => {
-    fetchData().then((loot) => {
-      setLoot(loot)
-      setData(loot)
-    })
+    fetchData()
+      .then((loot) => {
+        setLoot(loot)
+        setData(loot)
+      })
+      .catch((e) => console.error('fetch failed', e))
   }, [])
 
   const handleSearchOnChange = (search: string) => {
@@ -53,7 +55,7 @@ const LootTable: React.FC = () => {
   }
 
   const lootGrouped = groupBy(data, (item) =>
-    item.source === undefined || item.source === '' ? 'Unknown' : item.source
+    item.source === undefined || item.source === '' ? 'Unknown' : item.source,
   )
 
   return (

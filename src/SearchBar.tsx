@@ -18,7 +18,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
     event.preventDefault()
 
     const searchField = document.getElementById(
-      'searchField'
+      'searchField',
     ) as HTMLInputElement
 
     if (searchField !== null) {

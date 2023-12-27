@@ -6,7 +6,7 @@ interface WeaponProps {
   item: Item
 }
 
-const Weapon: React.FC<WeaponProps> = ({ item }) => {
+const Weapon: React.FC<WeaponProps> = ({ item }: WeaponProps) => {
   const { isVisible } = useVisibilityObserver()
   const foundry = `https://d2foundry.gg/w/${item.itemHash}`
 
