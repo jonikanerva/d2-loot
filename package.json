@@ -4,13 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "d": "yarn dev",
+    "d": "vite",
     "dev": "vite",
     "build": "yarn lint && tsc && vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext .ts,.tsx",
-    "test": "vitest",
-    "coverage": "vitest run --coverage"
+    "coverage": "vitest run --coverage",
+    "lint": "yarn lint:eslint && yarn lint:tsc && yarn lint:ts && yarn lint:json",
+    "lint:eslint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:tsc": "tsc --project .",
+    "lint:ts": "prettier --check --parser typescript --config package.json 'src/**/*.ts*'",
+    "lint:json": "prettier --check '**/*.json'"
   },
   "dependencies": {
     "lodash": "^4.17.21",
@@ -22,23 +25,19 @@
     "@types/lodash": "^4.14.202",
     "@types/react": "^18.2.45",
     "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "@vitejs/plugin-react-swc": "^3.5.0",
     "@vitejs/plugin-react": "^4.2.1",
-    "@vitest/coverage-c8": "^0.33.0",
     "bungie-api-ts": "^5.0.0",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-config-react-app": "^7.0.1",
-    "eslint-plugin-prettier": "^5.1.2",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
     "prettier": "^3.1.1",
     "typescript": "^5.3.3",
-    "vite": "^5.0.10",
-    "vitest": "^1.1.0"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "plugin:prettier/recommended"
-    ]
+    "vite": "^5.0.10"
   },
   "prettier": {
     "singleQuote": true,
