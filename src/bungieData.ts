@@ -112,6 +112,7 @@ export interface Item {
   ammoType: string
   equipmentSlot: string
   icon: string
+  waterMark: string
 }
 
 const getDefinitions = (paths: Record<string, string>): Promise<Item[]> => {
@@ -143,6 +144,7 @@ const getDefinitions = (paths: Record<string, string>): Promise<Item[]> => {
             item.equippingBlock?.equipmentSlotTypeHash || 0,
           ),
           icon: item.displayProperties.icon,
+          waterMark: item.iconWatermark,
         }
         weapons.set(item.hash, weapon)
       })
@@ -159,6 +161,7 @@ const getDefinitions = (paths: Record<string, string>): Promise<Item[]> => {
           ammoType,
           equipmentSlot,
           icon,
+          waterMark,
         } = weapons.get(item.itemHash) as Item
 
         return {
@@ -170,6 +173,7 @@ const getDefinitions = (paths: Record<string, string>): Promise<Item[]> => {
           ammoType,
           equipmentSlot,
           icon,
+          waterMark,
         }
       })
       .sort((a, b) => {

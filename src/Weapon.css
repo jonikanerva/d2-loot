@@ -16,6 +16,7 @@
 }
 
 .weaponIcon {
+  position: relative;
   height: 100px;
   width: 100px;
   padding: 0;
@@ -30,6 +31,13 @@
 
 .weaponIcon img {
   border-radius: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.weaponIcon img[alt='waterMark'] {
+  z-index: 1;
 }
 
 .weaponName {

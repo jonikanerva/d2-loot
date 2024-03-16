@@ -18,6 +18,10 @@ const Weapon: React.FC<WeaponProps> = ({ item }: WeaponProps) => {
             alt="icon"
             src={isVisible ? `https://www.bungie.net${item.icon}` : ''}
           />
+          <img
+            alt="waterMark"
+            src={isVisible ? `https://www.bungie.net${item.waterMark}` : ''}
+          />
         </div>
       </a>
       <div className="weaponDetails">
