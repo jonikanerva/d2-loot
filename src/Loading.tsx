@@ -1,8 +1,13 @@
-import React from 'react'
+import './Loading.css'
 
 const Loading: React.FC = () => (
-  <div>
-    <h1>Loading..</h1>
+  <div className="loadingContainer">
+    <div className="lds-ring">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
   </div>
 )
 
