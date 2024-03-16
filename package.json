@@ -9,11 +9,12 @@
     "build": "yarn lint && tsc && vite build",
     "preview": "vite preview",
     "coverage": "vitest run --coverage",
-    "lint": "yarn lint:eslint && yarn lint:tsc && yarn lint:ts && yarn lint:json",
+    "lint": "yarn lint:eslint && yarn lint:tsc && yarn lint:ts && yarn lint:json && yarn lint:css",
     "lint:eslint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:tsc": "tsc --project .",
     "lint:ts": "prettier --check --parser typescript --config package.json 'src/**/*.ts*'",
-    "lint:json": "prettier --check '**/*.json'"
+    "lint:json": "prettier --check '**/*.json'",
+    "lint:css": "prettier --check '**/*.css'"
   },
   "dependencies": {
     "lodash": "^4.17.21",
